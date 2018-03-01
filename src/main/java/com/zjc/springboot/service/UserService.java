@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 import com.zjc.springboot.entity.User;
 import com.zjc.springboot.mapper.UserMapper;
 
+/**
+ * 目前所有方法均为单表操作
+ * @author zhaojinchao
+ *
+ */
 @Service("userService")
 public class UserService {
 	
@@ -34,6 +39,16 @@ public class UserService {
 	}
 	
 	/**
+	 * 批量获取用户信息
+	 * @param userIds
+	 * @return
+	 * @throws Exception
+	 */
+	public List<User> selectAll(List<Integer> userIds) throws Exception{
+		return userMapper.selectAll(userIds);
+	}
+	
+	/**
 	 * 执行添加操作之后获取对象主键的值返回
 	 * @param user
 	 * @return
@@ -54,11 +69,38 @@ public class UserService {
 	}
 	
 	/**
+	 * 批量删除用户
+	 * @param users
+	 * @throws Exception
+	 */
+	public void deleteAll(List<Integer> userIds) throws Exception {
+		userMapper.deleteAll(userIds);
+	}
+	
+	/**
 	 * 批量添加用户信息
 	 * @param users
 	 * @throws Exception
 	 */
 	public void insertDAOProvider(List<User> users) throws Exception {
 		userMapper.saveAll(users);
+	}
+	
+	/**
+	 * 更新用户信息
+	 * @param user
+	 * @throws Exception
+	 */
+	public void updateUserById(User user) throws Exception {
+		userMapper.updateUserById(user);
+	}
+	
+	/**
+	 * 批量更新用户信息
+	 * @param users
+	 * @throws Exception
+	 */
+	public void updateAll(List<User> users) throws Exception {
+		userMapper.updateAll(users);
 	}
 }
