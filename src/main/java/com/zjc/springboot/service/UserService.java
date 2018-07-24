@@ -1,42 +1,42 @@
 package com.zjc.springboot.service;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import com.alicp.jetcache.Cache;
+import com.alicp.jetcache.anno.*;
 import com.zjc.springboot.entity.User;
-import com.zjc.springboot.mapper.UserMapper;
 
 /**
  * 目前所有方法均为单表操作
  * @author zhaojinchao
  *
  */
-@Service("userService")
-public class UserService {
-	
-	@Autowired
-	private UserMapper userMapper;
+public interface UserService {
+
+	/**
+	 * 更新用户信息
+	 * @param user
+	 * @throws Exception
+	 */
+//	@CacheUpdate(name = "userService.updateUser",key = "#user.id",value = "#user")
+	void updateUserById(User user) throws Exception;
 
 	/**
 	 * 根据id获取用户信息
-	 * @param id
+	 * @param Id
 	 * @return
 	 * @throws Exception
 	 */
-	public User getByUserId(long Id) throws Exception {
-		return userMapper.getByUserId(Id);
-	}
+	@Cached(name = "userService")
+	User getByUserId(long Id) throws Exception;
 
 	/**
 	 * 获取所有的用户信息
 	 * @return
 	 * @throws Exception
 	 */
-	public List<User> getUserList() throws Exception {
-		return userMapper.getUserList();
-	}
+	List<User> getUserList() throws Exception;
 	
 	/**
 	 * 批量获取用户信息
@@ -44,9 +44,7 @@ public class UserService {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<User> selectAll(List<Integer> userIds) throws Exception{
-		return userMapper.selectAll(userIds);
-	}
+	List<User> selectAll(List<Integer> userIds) throws Exception;
 	
 	/**
 	 * 执行添加操作之后获取对象主键的值返回
@@ -54,53 +52,37 @@ public class UserService {
 	 * @return
 	 * @throws Exception
 	 */
-	public Long addUser(User user) throws Exception {
-		userMapper.addUser(user);
-		return user.getId();
-	}
+	Long addUser(User user) throws Exception;
 	
 	/**
 	 * 根据用户Id删除一条记录
 	 * @param Id
 	 * @throws Exception
 	 */
-	public void deleteUserById(long Id) throws Exception {
-		userMapper.deleteUserById(Id);
-	}
+	void deleteUserById(long Id) throws Exception;
 	
 	/**
 	 * 批量删除用户
-	 * @param users
+	 * @param userIds
 	 * @throws Exception
 	 */
-	public void deleteAll(List<Integer> userIds) throws Exception {
-		userMapper.deleteAll(userIds);
-	}
+	void deleteAll(List<Integer> userIds) throws Exception;
 	
 	/**
 	 * 批量添加用户信息
 	 * @param users
 	 * @throws Exception
 	 */
-	public void insertDAOProvider(List<User> users) throws Exception {
-		userMapper.saveAll(users);
-	}
-	
-	/**
-	 * 更新用户信息
-	 * @param user
-	 * @throws Exception
-	 */
-	public void updateUserById(User user) throws Exception {
-		userMapper.updateUserById(user);
-	}
+	void insertDAOProvider(List<User> users) throws Exception;
 	
 	/**
 	 * 批量更新用户信息
 	 * @param users
 	 * @throws Exception
 	 */
-	public void updateAll(List<User> users) throws Exception {
-		userMapper.updateAll(users);
-	}
+	void updateAll(List<User> users) throws Exception;
+
+	User getUserByJetCache(long id) throws  Exception;
+
+	void getJetCacheAllKeys();
 }

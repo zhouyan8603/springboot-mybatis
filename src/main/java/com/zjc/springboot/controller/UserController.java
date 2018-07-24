@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.alicp.jetcache.Cache;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +30,18 @@ public class UserController {
 	public User getUserById(@RequestParam(value = "id") Integer id) {
 		try {
 			User user = userService.getByUserId(id);
+			return user;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**从缓存中查找User**/
+	@RequestMapping(value = "/getUserByCache",method = RequestMethod.GET)
+	public User getUserByJetCache(@RequestParam(value = "id") Long id) {
+		try {
+			User user = userService.getUserByJetCache(id);
 			return user;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -150,4 +163,5 @@ public class UserController {
 		}
 		return null;
 	}
+
 }

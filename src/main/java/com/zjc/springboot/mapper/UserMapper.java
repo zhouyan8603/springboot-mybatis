@@ -94,7 +94,7 @@ public interface UserMapper {
 	
 	/**
 	 * 批量删除用户信息
-	 * @param users
+	 * @param userIds
 	 * @throws Exception
 	 */
 	@DeleteProvider(type = DeleteDAOProvider.class ,method = "deleteAll")

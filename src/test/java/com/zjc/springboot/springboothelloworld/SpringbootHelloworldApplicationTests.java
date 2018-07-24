@@ -13,4 +13,10 @@ public class SpringbootHelloworldApplicationTests {
 	public void contextLoads() {
 	}
 
+	@Test
+	public void hello() {
+
+		
+	}
 }
+
