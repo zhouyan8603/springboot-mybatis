@@ -11,75 +11,87 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Table(name = "tbl_user")
-public class User implements Serializable{
-	private static final long serialVersionUID = 1L;
-	@Column(name = "id")
-	@Setter @Getter private long id;
-	@Column(name = "name")
-	@Setter @Getter private String name;
-	@Column(name = "sex")
-	@Setter @Getter private int sex;
-	@Column(name = "phone")
-	@Setter @Getter private String phone;
-	@Column(name = "second_phone")
-	@Setter @Getter private String secondPhone;
-	@Column(name = "add_time")
-	@Setter @Getter private Date addTime;
-	
-	private static User user = new User();
-	
-	public User() {
-	}
-	
-	public static User getInstance() {
-		return user;
-	}
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Column(name = "id")
+    @Setter
+    @Getter
+    private long id;
+    @Column(name = "name")
+    @Setter
+    @Getter
+    private String name;
+    @Column(name = "sex")
+    @Setter
+    @Getter
+    private int sex;
+    @Column(name = "phone")
+    @Setter
+    @Getter
+    private String phone;
+    @Column(name = "second_phone")
+    @Setter
+    @Getter
+    private String secondPhone;
+    @Column(name = "add_time")
+    @Setter
+    @Getter
+    private Date addTime;
 
-	public long getId() {
-		return id;
-	}
+    private static User user = new User();
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public User() {
+    }
 
-	public String getName() {
-		return name;
-	}
+    public static User getInstance() {
+        return user;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public int getSex() {
-		return sex;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public void setSex(int sex) {
-		this.sex = sex;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public int getSex() {
+        return sex;
+    }
 
-	public String getSecondPhone() {
-		return secondPhone;
-	}
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
 
-	public void setSecondPhone(String secondPhone) {
-		this.secondPhone = secondPhone;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public Date getAddTime() {
-		return addTime;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public void setAddTime(Date addTime) {
-		this.addTime = addTime;
-	}
+    public String getSecondPhone() {
+        return secondPhone;
+    }
+
+    public void setSecondPhone(String secondPhone) {
+        this.secondPhone = secondPhone;
+    }
+
+    public Date getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(Date addTime) {
+        this.addTime = addTime;
+    }
 }

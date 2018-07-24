@@ -19,6 +19,7 @@ public class SofaTracerUtil implements HandlerInterceptor {
 
     /**
      * 所有请求之前进行拦截
+     *
      * @param httpServletRequest
      * @param httpServletResponse
      * @param o
@@ -34,6 +35,7 @@ public class SofaTracerUtil implements HandlerInterceptor {
 
     /**
      * 所有的请求结束，并且渲染了视图执行
+     *
      * @param httpServletRequest
      * @param httpServletResponse
      * @param o
@@ -51,6 +53,7 @@ public class SofaTracerUtil implements HandlerInterceptor {
 
     /**
      * 所有的请求结束，渲染视图之前执行
+     *
      * @param httpServletRequest
      * @param httpServletResponse
      * @param o

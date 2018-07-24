@@ -14,21 +14,23 @@ import java.util.List;
 
 @SpringBootApplication
 @EnableCreateCacheAnnotation
-@EnableMethodCache(basePackages = {"com.zjc.springboot.service","com.zjc.springboot.common"})
+@EnableMethodCache(basePackages = {"com.zjc.springboot.service", "com.zjc.springboot.common"})
 public class SpringbootHelloworldApplication extends WebMvcConfigurerAdapter {
 
-	//extends WebMvcConfigurerAdapter
+    //extends WebMvcConfigurerAdapter
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringbootHelloworldApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringbootHelloworldApplication.class, args);
+    }
 
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(getSofaTracer());
-		super.addInterceptors(registry);
-	}
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(getSofaTracer());
+        super.addInterceptors(registry);
+    }
 
-	@Bean
-	HandlerInterceptor getSofaTracer(){return new SofaTracerUtil();}
+    @Bean
+    HandlerInterceptor getSofaTracer() {
+        return new SofaTracerUtil();
+    }
 }

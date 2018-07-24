@@ -22,8 +22,8 @@ import java.util.concurrent.TimeUnit;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
-    @CreateCache(name = "userService",cacheType = CacheType.LOCAL,localLimit = 2,expire = 30)
-    public Cache<Object,User> userCache;
+    @CreateCache(name = "userService", cacheType = CacheType.LOCAL, localLimit = 2, expire = 30)
+    public Cache<Object, User> userCache;
 
     @Autowired
     private UserMapper userMapper;
@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUserById(long Id) throws Exception {
         User user = userMapper.getByUserId(Id);
-        if (user == null ) {
+        if (user == null) {
             return;
         }
         userCache.remove(user.getId());
@@ -73,11 +73,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUserById(User user) throws Exception {
-         if (user == null) {
-             return;
-         }
-         userMapper.updateUserById(user);
-         userCache.put(user.getId(),user);
+        if (user == null) {
+            return;
+        }
+        userMapper.updateUserById(user);
+        userCache.put(user.getId(), user);
     }
 
     @Override
@@ -98,8 +98,8 @@ public class UserServiceImpl implements UserService {
      * 1分钟刷新一次
      */
     @PostConstruct
-    public void init() throws Exception{
-        RefreshPolicy policy = RefreshPolicy.newPolicy(1,TimeUnit.MINUTES);
+    public void init() throws Exception {
+        RefreshPolicy policy = RefreshPolicy.newPolicy(1, TimeUnit.MINUTES);
         userCache.config().setRefreshPolicy(policy);
     }
 }
