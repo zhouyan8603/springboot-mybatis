@@ -1,8 +1,6 @@
 package com.zjc.springboot.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.alicp.jetcache.Cache;
-import com.alicp.jetcache.CacheLoader;
 import com.alicp.jetcache.RefreshPolicy;
 import com.alicp.jetcache.anno.CacheType;
 import com.alicp.jetcache.anno.CreateCache;
@@ -31,7 +29,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getByUserId(long Id) throws Exception {
         User user = userMapper.getByUserId(Id);
-//        userCache.put(Id,user);
+
+        userCache.put(Id,user);
         return user;
     }
 
